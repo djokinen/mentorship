@@ -1,0 +1,119 @@
+﻿section#header {
+	text-align: right;
+	text-transform: lowercase;
+}
+
+.error {
+	color: #f00;
+}
+
+span.status {
+	color: #f80;
+	display:inline !important;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+/* form styles */
+
+.form fieldset {
+	background-color: #eee;
+}
+
+	.form fieldset legend {
+		font-weight: bolder;
+		background-color: white;
+		border-radius: .50em;
+		padding: 2px 8px;
+	}
+
+	.form fieldset ol {
+		padding: 0;
+		margin: 0;
+	}
+
+		.form fieldset ol li {
+			list-style: none;
+		}
+
+		.form fieldset ol li {
+			list-style: none;
+			margin: 4px;
+			padding: 4px;
+		}
+
+			.form fieldset ol li label {
+				font-weight: bolder;
+			}
+
+				.form fieldset ol li label.value {
+					font-weight: lighter;
+				}
+
+			.member_list input:not([type="radio"]):not([type="submit"]),
+			.member_list textarea,
+			.member_list span {
+				background-color: #f80 !important;
+				display: inline !important;
+				padding: inherit !important;
+				width: inherit !important;
+			}
+
+			.form fieldset ol li input:not([type=radio]):not([type=submit]):not([type=button]),
+			.form fieldset ol li textarea,
+			.form fieldset ol li span {
+				display: block;
+				border-radius: .20em;
+				outline: none;
+				padding: .25em;
+				width: 95%;
+			}
+
+/* mentor industry list boxes */
+.list_controls {
+	margin: 90px 260px 0;
+	text-align: center;
+}
+
+div.left {
+	float: left;
+}
+
+div.right {
+	float: right;
+}
+
+.member_list ul {
+	background-color: #FFFFFF;
+	border: 1px solid #999999;
+	/*height: 200px;*/
+	height:16em;
+	list-style: none outside none;
+	margin: 2px 0 0;
+	overflow: auto;
+	padding: 0;
+	/*width: 240px;*/
+	width: 16em;
+}
+
+.member_list ul li {
+	border-bottom: 1px solid #CCCCCC;
+	margin: 0;
+	/*padding: 0 0 0 4px;*/
+	padding: 4px 0px;
+}
+
+.member_list ul li input[type="checkbox"] {
+	/* float: right; */
+	/*margin: 7px 10px 0 0;*/
+	margin: 6px;
+}
+
+.member_list ul li label {
+	font-weight:normal !important;
+	/* display: block; */
+	/*padding: 5px 10px;*/
+	/*width: 160px;*/
+}

@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" ClientIDMode="Static"  AutoEventWireup="true" CodeFile="main.master.cs" Inherits="main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title>Membership</title>
+	<link rel="stylesheet" type="text/css" href="/style/main.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+	<script src="/script/main.js" type="text/javascript"></script>
+	<asp:ContentPlaceHolder ID="ContentHead" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body>
+	<form id="form1" runat="server">
+		<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server"></ajaxToolkit:ToolkitScriptManager>
+
+		<section id="header">
+			<asp:LoginView ID="loginView" runat="server">
+				<AnonymousTemplate>
+					<a href="/membership/create.aspx" title="sign up">sign up</a>
+				</AnonymousTemplate>
+				<LoggedInTemplate>
+					<a href="/membership/profile.aspx" title="sign up">my profile</a>
+				</LoggedInTemplate>
+			</asp:LoginView>
+			
+			<asp:LoginStatus ID="loginStatus" runat="server" />
+		</section>
+			
+		<div>
+			<asp:ContentPlaceHolder ID="ContentBody" runat="server">
+			</asp:ContentPlaceHolder>
+		</div>
+	</form>
+</body>
+</html>

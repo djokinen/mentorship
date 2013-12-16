@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class UserControl_EmailAddressValidator : BaseUserControl
+{
+	protected override void OnInit(EventArgs e)
+	{
+		base.OnInit(e);
+		this.ErrorMessage = "Invalid Email Address";
+		ctl.ValidationExpression = Global.EmailAddressRegEx;
+	}
+
+	public string ErrorMessage
+	{
+		get { return ctl.ErrorMessage; }
+		set
+		{
+			ctl.ErrorMessage = value;
+			ctl.Text = value;
+			ctl.ToolTip = value;
+		}
+	}
+
+	public string ControlToValidate
+	{
+		get { return ctl.ControlToValidate; }
+		set { ctl.ControlToValidate = value; }
+	}
+
+	public string ValidationGroup
+	{
+		get { return ctl.ValidationGroup; }
+		set { ctl.ValidationGroup = value; }
+	}
+}
