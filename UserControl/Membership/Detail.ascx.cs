@@ -21,13 +21,13 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 		{
 			panelMentee.Visible = base.IsMentee;
 			panelMentor.Visible = !base.IsMentee;
-			_load(base.UserName, base.IsMentee, true); // base.IsEditMode);
+			_load(base.CurrentUserName, base.IsMentee, true); // base.IsEditMode);
 		}
 	}
 
 	void buttonUpdate_Click(object sender, EventArgs e)
 	{
-		if (_update(base.UserName, base.IsMentee))
+		if (_update(base.CurrentUserName, base.IsMentee))
 		{
 			labelStatus.Text = "Record updated";
 		}
@@ -39,7 +39,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 
 	private void _load(string username, bool isMentee, bool isEditMode)
 	{
-		MembershipUser membershipUser = Membership.GetUser(base.UserName);
+		MembershipUser membershipUser = Membership.GetUser(base.CurrentUserName);
 		// if member exists
 		if (membershipUser != null)
 		{

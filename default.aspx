@@ -1,8 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="_default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentHead" Runat="Server">
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" Runat="Server">
 
 	<h1>Membership</h1>

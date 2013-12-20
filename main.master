@@ -16,12 +16,22 @@
 		<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server"></ajaxToolkit:ToolkitScriptManager>
 
 		<section id="header">
+			<asp:LoginView ID="loginViewAdmin" runat="server">
+				<RoleGroups>
+					<asp:RoleGroup Roles="admin">
+						<ContentTemplate>
+							<a href="/membership/admin/default.aspx" title="admin">admin</a>
+						</ContentTemplate>
+					</asp:RoleGroup>
+				</RoleGroups>
+			</asp:LoginView>
+
 			<asp:LoginView ID="loginView" runat="server">
 				<AnonymousTemplate>
 					<a href="/membership/create.aspx" title="sign up">sign up</a>
 				</AnonymousTemplate>
 				<LoggedInTemplate>
-					<a href="/membership/profile.aspx" title="sign up">my profile</a>
+					<a href="/membership/profile.aspx" title="my profile">my profile</a>
 				</LoggedInTemplate>
 			</asp:LoginView>
 			

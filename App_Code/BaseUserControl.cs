@@ -32,7 +32,7 @@ public class BaseUserControl : System.Web.UI.UserControl
 		}
 	}
 
-	public string UserName
+	public string CurrentUserName
 	{
 		get
 		{

@@ -1,4 +1,13 @@
-﻿section#header {
+﻿body {
+	font-family: arial,sans-serif;
+	font-size: 83%;
+}
+
+h2, h3 {
+	text-transform: capitalize;
+}
+
+section#header {
 	text-align: right;
 	text-transform: lowercase;
 }
