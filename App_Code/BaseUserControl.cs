@@ -38,11 +38,11 @@ public class BaseUserControl : System.Web.UI.UserControl
 		{
 			// HACK: FIX THIS
 			return Membership.GetUser().UserName;
-			if (ViewState[Resources.Key.UserName] != null)
-			{
-				return (string)ViewState[Resources.Key.UserName];
-			}
-			else { return string.Empty; }
+			//if (ViewState[Resources.Key.UserName] != null)
+			//{
+			//	return (string)ViewState[Resources.Key.UserName];
+			//}
+			//else { return string.Empty; }
 		}
 		set { ViewState[Resources.Key.UserName] = value; }
 	}
