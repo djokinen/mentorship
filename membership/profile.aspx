@@ -1,4 +1,4 @@
-﻿<%@ Page ClientIDMode="Static" Title="Profile" MasterPageFile="~/main.master" Language="C#" AutoEventWireup="true" CodeFile="profile.aspx.cs" Inherits="membership_profile" %>
+﻿<%@ Page ClientIDMode="Static" Title="Profile" MasterPageFile="~/MasterPage.master" Language="C#" AutoEventWireup="true" CodeFile="profile.aspx.cs" Inherits="membership_profile" %>
 
 <%@ Register Src="~/UserControl/Membership/Detail.ascx" TagName="Detail" TagPrefix="membership" %>
 

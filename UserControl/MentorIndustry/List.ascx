@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="List.ascx.cs" Inherits="UserControl_MentorIndustry_List" %>
 
-<script type="text/javascript" src="/script/industry.js"></script>
+<script type="text/javascript" src="/js/dwj-industry.js"></script>
 
 <fieldset>
 	<legend>Add Industry</legend>
