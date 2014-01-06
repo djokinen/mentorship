@@ -14,7 +14,7 @@
 
 <body>
 	<form id="form1" runat="server">
-		<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server"></ajaxToolkit:ToolkitScriptManager>
+		<%--<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server"></ajaxToolkit:ToolkitScriptManager>--%>
 
 		<section id="header">
 			<asp:LoginView ID="loginViewAdmin" runat="server">

@@ -49,7 +49,7 @@
 					<label for="MenteeDob">D.O.B.</label>
 					<asp:TextBox ID="MenteeDob" runat="server" placeholder="Date of Birth"></asp:TextBox>
 					<asp:Literal ID="literalMenteeDob" runat="server"></asp:Literal>
-					<ajaxToolkit:CalendarExtender ID="calendarExtender" runat="server" TargetControlID="MenteeDob" Format="MMM dd, yyyy"></ajaxToolkit:CalendarExtender>
+					<%--<ajaxToolkit:CalendarExtender ID="calendarExtender" runat="server" TargetControlID="MenteeDob" Format="MMM dd, yyyy"></ajaxToolkit:CalendarExtender>--%>
 				</li>
 
 				<li>

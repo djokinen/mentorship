@@ -78,7 +78,7 @@
 				<li>
 					<asp:Label ID="MenteeDobLabel" runat="server" AssociatedControlID="MenteeDob">D.O.B.</asp:Label>
 					<asp:TextBox ID="MenteeDob" runat="server" placeholder="Date of Birth"></asp:TextBox>
-					<ajaxToolkit:CalendarExtender ID="calendarExtender" runat="server" TargetControlID="MenteeDob" Format="MMM dd, yyyy"></ajaxToolkit:CalendarExtender>
+					<%--<ajaxToolkit:CalendarExtender ID="calendarExtender" runat="server" TargetControlID="MenteeDob" Format="MMM dd, yyyy"></ajaxToolkit:CalendarExtender>--%>
 				</li>
 
 				<li>

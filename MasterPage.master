@@ -45,8 +45,7 @@
 </head>
 <body>
 	<form id="form1" runat="server">
-	<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server">
-	</ajaxToolkit:ToolkitScriptManager>
+	<%--<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server"></ajaxToolkit:ToolkitScriptManager>--%>
 	<header>
 		<!--==============================header=================================-->
 		<div class="container_16">
