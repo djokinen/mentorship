@@ -132,17 +132,14 @@
 
 	<asp:Panel ID="panelStep3_confirm" runat="server" Visible="false">
 
-		<fieldset id="Fieldset1">
-			<legend>Account Status</legend>
 			<h2>Welcome!</h2>
+			<h3>Account Status</h3>
 			<p>Your account has been set-up. You can begin by logging in and editing your profile</p>
 			<ul>
 				<li>
-					<a href="/membership/profile.aspx">my profile</a>
+					<a class="btn" href="/membership/profile.aspx">go to my profile</a>
 				</li>
 			</ul>
-			<p>Once you have...</p>
-		</fieldset>
 
 	</asp:Panel>
 

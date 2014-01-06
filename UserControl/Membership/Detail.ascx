@@ -11,7 +11,7 @@
 	</div>
 
 	<fieldset>
-		<legend>Required Info</legend>
+		<%--<legend>Required Info</legend>--%>
 		<ol>
 
 			<li>
