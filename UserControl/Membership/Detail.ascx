@@ -1,6 +1,7 @@
 ﻿<%@ Control ClientIDMode="Static" Language="C#" AutoEventWireup="true" CodeFile="Detail.ascx.cs" Inherits="UserControl_Membership_Detail" %>
 
 <%@ Register Src="~/UserControl/MentorIndustry/List.ascx" TagName="List" TagPrefix="mentorIndustry" %>
+<%@ Register Src="~/UserControl/MenteeMentor/List.ascx" TagName="List" TagPrefix="menteeMentor" %>
 
 <%-- http://24ways.org/2009/have-a-field-day-with-html5-forms/ --%>
 
@@ -32,7 +33,7 @@
 			</li>
 
 			<!-- mentee -->
-			<asp:Panel ID="panelMentee" runat="server">
+			<asp:PlaceHolder ID="panelMentee" runat="server">
 				<li>
 					<label for="MenteePhone">Phone</label>
 					<asp:TextBox ID="MenteePhone" runat="server" placeholder="Phone Number"></asp:TextBox>
@@ -57,10 +58,14 @@
 					<asp:TextBox ID="MenteeOccupation" runat="server" placeholder="Occupation"></asp:TextBox>
 					<asp:Literal ID="literalMenteeOccupation" runat="server"></asp:Literal>
 				</li>
-			</asp:Panel>
+
+				<li>
+					<menteeMentor:List ID="menteeMentorList" runat="server" />
+				</li>
+			</asp:PlaceHolder>
 
 			<!-- mentor -->
-			<asp:Panel ID="panelMentor" runat="server">
+			<asp:PlaceHolder ID="panelMentor" runat="server">
 				<li>
 					<label for="MentorPhone">Phone</label>
 					<asp:TextBox ID="MentorPhone" runat="server" placeholder="Phone Number"></asp:TextBox>
@@ -88,7 +93,7 @@
 				<li>
 					<mentorIndustry:List ID="mentorIndustryList" runat="server" />
 				</li>
-			</asp:Panel>
+			</asp:PlaceHolder>
 
 			<li>
 				<div class="commands">

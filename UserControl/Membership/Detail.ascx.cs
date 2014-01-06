@@ -126,6 +126,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					profileCommon.Phone = MenteePhone.Text.Trim();
 					profileCommon.Mentee.Community = MenteeCommunity.Text.Trim();
 					profileCommon.Mentee.Occupation = MenteeOccupation.Text.Trim();
+					menteeMentorList.Save();
 				}
 				else
 				{
@@ -133,11 +134,12 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					profileCommon.Mentor.Bio = MentorBio.Text.Trim();
 					profileCommon.Mentor.CompanyName = MentorCompanyName.Text.Trim();
 					profileCommon.Mentor.Industry = MentorIndustry.Text.Trim();
+					mentorIndustryList.Save();
 				}
 				profileCommon.Save();
 				value = true;
 			}
-			mentorIndustryList.Save();
+			// mentorIndustryList.Save();
 		}
 		return value;
 	}

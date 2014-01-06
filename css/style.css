@@ -166,6 +166,12 @@ a.btn:hover {
 	border-color: /*#3C3C3C;*/ #FE5B13;
 }
 
+a.btn.active {
+	background-color: #3C3C3C;
+	color: #fff;
+	border-color: /*#3C3C3C;*/ #FE5B13;
+}
+
 
 a.link1 {
 	color: #fff;

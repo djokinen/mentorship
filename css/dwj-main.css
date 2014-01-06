@@ -55,7 +55,7 @@ span.status {
     clear: left;
     display: block;
     float: left;
-    min-height: 53px;
+    /* min-height: 53px; */
     position: relative;
     width: 75%;			
 		}
@@ -68,7 +68,7 @@ span.status {
 					font-weight: lighter;
 				}
 
-			.member_list input:not([type="radio"]):not([type="submit"]),
+			.member_list input:not([type="radio"]):not([type="submit"]):not([type="checkbox"]),
 			.member_list textarea,
 			.member_list span {
 				background-color: #f80 !important;
@@ -77,7 +77,7 @@ span.status {
 				width: inherit !important;
 			}
 
-			.form fieldset ol li input:not([type=radio]):not([type=submit]):not([type=button]),
+			.form fieldset ol li input:not([type=radio]):not([type=submit]):not([type=button]):not([type="checkbox"]),
 			.form fieldset ol li textarea,
 			.form fieldset ol li span {
 /*				display: block;
