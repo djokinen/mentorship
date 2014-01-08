@@ -54,9 +54,9 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 
 				text.AppendFormat("<li class=\"mix {0}\">", String.Join(" ", industryList.Select(n => n.ID)));
 				string delete = JsonConvert.SerializeObject(mentor, Formatting.None);
-				text.AppendFormat("<a data-userid=\'{0}\' data-user=\'{1}\' src=\'#\'>{2}</a>", 
-					membershipUser.ProviderUserKey, 
-					Server.HtmlEncode( JsonConvert.SerializeObject(mentor, Formatting.None)), 
+				text.AppendFormat("<a data-userid=\'{0}\' data-user=\'{1}\' src=\'#\'>{2}</a>",
+					membershipUser.ProviderUserKey,
+					Server.HtmlEncode(JsonConvert.SerializeObject(mentor, Formatting.None)),
 					membershipUser.UserName);
 				text.Append("</li>");
 			}
