@@ -166,6 +166,7 @@ a.btn:hover {
 	border-color: /*#3C3C3C;*/ #FE5B13;
 }
 
+.mentor-list li.active,
 a.btn.active {
 	background-color: #3C3C3C;
 	color: #fff;

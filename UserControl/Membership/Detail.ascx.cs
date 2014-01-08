@@ -75,7 +75,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					{
 						MentorBio.Text = profileCommon.Mentor.Bio;
 						MentorCompanyName.Text = profileCommon.Mentor.CompanyName;
-						MentorIndustry.Text = profileCommon.Mentor.Industry;
+						// MentorIndustry.Text = profileCommon.Mentor.Industry;
 						MentorPhone.Text = profileCommon.Phone;
 					}
 				}
@@ -94,7 +94,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					{
 						literalMentorBio.Text = "";
 						literalMentorCompanyName.Text = "";
-						literalMentorIndustry.Text = "";
+						// literalMentorIndustry.Text = "";
 						literalMentorPhone.Text = "";
 					}
 				}
@@ -133,7 +133,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					profileCommon.Phone = MentorPhone.Text.Trim();
 					profileCommon.Mentor.Bio = MentorBio.Text.Trim();
 					profileCommon.Mentor.CompanyName = MentorCompanyName.Text.Trim();
-					profileCommon.Mentor.Industry = MentorIndustry.Text.Trim();
+					// profileCommon.Mentor.Industry = MentorIndustry.Text.Trim();
 					mentorIndustryList.Save();
 				}
 				profileCommon.Save();

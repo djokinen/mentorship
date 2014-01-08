@@ -112,7 +112,7 @@ public partial class UserControl_Membership_Create : BaseUserControl
 					profileCommon.Phone = MentorPhone.Text.Trim();
 					profileCommon.Mentor.Bio = MentorBio.Text.Trim();
 					profileCommon.Mentor.CompanyName = MentorCompanyName.Text.Trim();
-					profileCommon.Mentor.Industry = MentorIndustry.Text.Trim();
+					// profileCommon.Mentor.Industry = MentorIndustry.Text.Trim();
 				}
 				profileCommon.Save();
 				value = true;

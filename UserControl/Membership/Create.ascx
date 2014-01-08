@@ -110,10 +110,10 @@
 					<asp:TextBox ID="MentorCompanyName" runat="server" placeholder="Company Name"></asp:TextBox>
 				</li>
 
-				<li>
+<%--				<li>
 					<asp:Label ID="MentorIndustryLabel" runat="server" AssociatedControlID="MentorIndustry">Industry</asp:Label>
 					<asp:TextBox ID="MentorIndustry" runat="server" placeholder="Industry"></asp:TextBox>
-				</li>
+				</li>--%>
 
 				<li>
 					<asp:Label ID="MentorBioLabel" runat="server" AssociatedControlID="MentorBio">Bio</asp:Label>

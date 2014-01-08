@@ -1,63 +1,44 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="List.ascx.cs" Inherits="UserControl_MenteeMentor_List" %>
 
-<script src="/js/dwj-industry.js"></script>
+<%--<script src="/js/dwj-menteementor.js"></script>--%>
 <script src="/js/jquery.mixitup.min.js"></script>
 <script>
 	$(function () {
 		$('#mixitup-container').mixitup();
+
+		$(".mentor-list a").click(function () {
+			// alert($(this).data('userid'));
+			$(".mentor-list ul li").removeClass("active");
+			$(this).parent("li").addClass("active");
+		});
 	});
 </script>
 
-<style>
-	#mixitup-container .mix {
-		opacity: 0;
-		display: none;
-	}
-</style>
-
 <h1>Connect with a Mentor</h1>
-<h2>Filter by Industry</h2>
 <asp:Repeater ID="repeaterFilter" runat="server">
 	<ItemTemplate>
 		<a href="javascript://;" class="btn filter" data-filter="<%# Eval("ID") %>"><%# Eval("Name") %></a>
 	</ItemTemplate>
 </asp:Repeater>
 
-<h3>Mentors</h3>
+<h2>Available Mentors</h2>
 
 <fieldset id="mixitup-container">
-	<div class="member_list left">
-		<label>Available Industries:</label>
-		
-		<ul class="all_industries">
-			<asp:Literal ID="literalMentorList" runat="server"></asp:Literal>
-			<asp:Repeater ID="repeaterAvailable" runat="server">
-				<ItemTemplate>
-					<li class="mix <%# Eval("ID") %>">
-						<input type="checkbox" value="<%# Eval("ID") %>" id='<%# Eval("ID") %>' name="<%# Eval("ID") %>">
-						<label for="<%# Eval("ID") %>"><%# Eval("Name") %></label>
-					</li>
-				</ItemTemplate>
-			</asp:Repeater>
-		</ul>
+	<%--<legend>Mentors</legend>--%>
+	<div class="mentor-list left">
+		<%--<strong>Mentor List</strong>--%>
+		<ul><asp:Literal ID="literalMentorList" runat="server"></asp:Literal></ul>
 	</div>
-	<div class="member_list right">
-		<label>My Industries:</label>
-		<asp:HiddenField ID="groupMembers" runat="server" />
-		<ul class="group_industries">
-			<asp:Repeater ID="repeaterSelected" runat="server">
-				<ItemTemplate>
-					<li>
-						<input type="checkbox" value="<%# Eval("ID") %>" id='<%# Eval("ID") %>' name="<%# Eval("ID") %>">
-						<label for="<%# Eval("ID") %>"><%# Eval("Name") %></label>
-					</li>
-				</ItemTemplate>
-			</asp:Repeater>
-		</ul>
-	</div>
-	<div class="list_controls">
-		<p><input type="button" id="buttonRight" value="→"></p>
-		<p><input type="button" id="buttonLeft" value="←"></p>
+
+	<div class="mentor-list right">
+		<%--<strong>Mentor Details</strong>--%>
+		<div id="mentor-detail">
+			<h3>My Name</h3>
+			<div class="subtitle"><em>Company Name</em></div>
+			<div><strong>Here, are, some, industries</strong></div>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed lacus vitae quam malesuada rhoncus id a diam. Sed nisi turpis, sodales euismod lobortis sed, rutrum et ligula. Mauris ut eros ipsum, tristique convallis libero. Nullam pharetra, nibh vel vestibulum pellentesque, velit lacus ultricies nibh, vitae porta turpis sapien ac orci. Pellentesque pellentesque elementum massa a euismod. Etiam elit dolor, accumsan non sagittis eget, viverra in est. Praesent interdum aliquet odio, nec adipiscing dui adipiscing sit amet. Nulla facilisi. Fusce nec sem nibh. In nec turpis mauris, vitae pulvinar enim. Curabitur accumsan purus sed dui malesuada faucibus. Quisque rhoncus facilisis ante quis ultrices.</p>
+			<a class="btn">connect</a>
+		</div>
 	</div>
 
 </fieldset>
