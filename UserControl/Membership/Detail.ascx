@@ -60,6 +60,13 @@
 				</li>
 
 				<li>
+					<div class="commands">
+						<asp:LinkButton CssClass="btn" ID="buttonUpdateMentee" runat="server" CommandArgument="update" Text="Update Profile" ValidationGroup="required-info" />
+						<asp:Label ID="labelStatusMentee" runat="server" EnableViewState="false" CssClass="status"></asp:Label>
+					</div>
+				</li>
+
+				<li>
 					<menteeMentor:List ID="menteeMentorList" runat="server" />
 				</li>
 			</asp:PlaceHolder>
@@ -94,14 +101,15 @@
 				<li>
 					<mentorIndustry:List ID="mentorIndustryList" runat="server" />
 				</li>
+
+				<li>
+					<div class="commands">
+						<asp:LinkButton CssClass="btn" ID="buttonUpdateMentor" runat="server" CommandArgument="update" Text="Update Profile" ValidationGroup="required-info"></asp:LinkButton>
+						<asp:Label ID="labelStatusMentor" runat="server" EnableViewState="false" CssClass="status"></asp:Label>
+					</div>
+				</li>
 			</asp:PlaceHolder>
 
-			<li>
-				<div class="commands">
-					<asp:Button ID="buttonUpdate" runat="server" CommandArgument="update" Text="update" ValidationGroup="required-info" />
-					<asp:Label ID="labelStatus" runat="server" EnableViewState="false" CssClass="status"></asp:Label>
-				</div>
-			</li>
 		</ol>
 	</fieldset>
 

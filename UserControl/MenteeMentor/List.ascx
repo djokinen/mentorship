@@ -7,7 +7,7 @@
 		// init filtering
 		$('#mixitup-container').mixitup();
 
-		$(".mentor-list a").click(function () {
+		$(".mentor-list.left a").click(function () {
 			$(".mentor-list ul li").removeClass("active");
 			$(this).parent("li").addClass("active");
 
@@ -33,21 +33,13 @@
 <h2>Available Mentors</h2>
 
 <fieldset id="mixitup-container">
-	<%--<legend>Mentors</legend>--%>
 	<div class="mentor-list left">
-		<%--<strong>Mentor List</strong>--%>
 		<ul><asp:Literal ID="literalMentorList" runat="server"></asp:Literal></ul>
 	</div>
 
 	<div class="mentor-list right">
-		<%--<strong>Mentor Details</strong>--%>
 		<div id="mentor-detail">
-			<input type="hidden" value="" />
-			<h3>My Name</h3>
-			<div class="subtitle"><em>Company Name</em></div>
-			<div><strong>Here, are, some, industries</strong></div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed lacus vitae quam malesuada rhoncus id a diam. Sed nisi turpis, sodales euismod lobortis sed, rutrum et ligula. Mauris ut eros ipsum, tristique convallis libero. Nullam pharetra, nibh vel vestibulum pellentesque, velit lacus ultricies nibh, vitae porta turpis sapien ac orci. Pellentesque pellentesque elementum massa a euismod. Etiam elit dolor, accumsan non sagittis eget, viverra in est. Praesent interdum aliquet odio, nec adipiscing dui adipiscing sit amet. Nulla facilisi. Fusce nec sem nibh. In nec turpis mauris, vitae pulvinar enim. Curabitur accumsan purus sed dui malesuada faucibus. Quisque rhoncus facilisis ante quis ultrices.</p>
-			<a class="btn">Connect with My Name</a>
+			<asp:Literal ID="literalMentorDetail" runat="server"></asp:Literal>
 		</div>
 	</div>
 

@@ -18,7 +18,7 @@ public partial class UserControl_MentorIndustry_List : BaseUserControl
 	protected override void OnLoad(EventArgs e)
 	{
 		base.OnLoad(e);
-		if (!IsPostBack) { this.DataBind(); }
+		/* if (!IsPostBack) { this.DataBind(); } */
 	}
 
 	public override void DataBind()

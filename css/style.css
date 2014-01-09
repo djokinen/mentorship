@@ -146,9 +146,11 @@ a {
 	-webkit-transition: 0.5s ease;
 }
 
-a:hover {
-	color: #FE2745;
-}
+	a:hover {
+		color: #FE5B13;
+		text-decoration:underline;
+		/*color: #FE2745;*/
+	}
 
 a.btn {
 	color: #313131;

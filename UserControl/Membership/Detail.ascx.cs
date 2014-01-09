@@ -11,7 +11,8 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 	protected override void OnInit(EventArgs e)
 	{
 		base.OnInit(e);
-		buttonUpdate.Click += buttonUpdate_Click;
+		buttonUpdateMentor.Click += buttonUpdate_Click;
+		buttonUpdateMentee.Click += buttonUpdate_Click;
 	}
 
 	protected override void OnLoad(EventArgs e)
@@ -29,11 +30,13 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 	{
 		if (_update(base.CurrentUserName, base.IsMentee))
 		{
-			labelStatus.Text = "Record updated";
+			labelStatusMentee.Text = "Record updated";
+			labelStatusMentor.Text = "Record updated";
 		}
 		else
 		{
-			labelStatus.Text = "This record was not updated";
+			labelStatusMentee.Text = "This record was not updated";
+			labelStatusMentor.Text = "This record was not updated";
 		}
 	}
 
@@ -70,6 +73,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 						MenteeCommunity.Text = profileCommon.Mentee.Community;
 						MenteeOccupation.Text = profileCommon.Mentee.Occupation;
 						MenteePhone.Text = profileCommon.Phone;
+						menteeMentorList.DataBind();
 					}
 					else
 					{
@@ -77,6 +81,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 						MentorCompanyName.Text = profileCommon.Mentor.CompanyName;
 						// MentorIndustry.Text = profileCommon.Mentor.Industry;
 						MentorPhone.Text = profileCommon.Phone;
+						mentorIndustryList.DataBind();
 					}
 				}
 				else
