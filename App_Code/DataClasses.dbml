@@ -166,7 +166,9 @@
     <Type Name="cree_MenteeMentor">
       <Column Name="UserIdMentee" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserIdMentor" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ConnectionStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="aspnet_User_cree_MenteeMentor" Member="aspnet_User" ThisKey="UserIdMentee" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
       <Association Name="aspnet_User_cree_MenteeMentor1" Member="aspnet_User1" ThisKey="UserIdMentor" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
     </Type>

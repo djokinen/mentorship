@@ -7,7 +7,7 @@ using System.Web.Security;
 
 public class DataAccess
 {
-	#region cree_industry
+	#region cree_Industry
 
 	public cree_Industry GetIndustry(int id)
 	{
@@ -50,7 +50,7 @@ public class DataAccess
 
 	#endregion
 
-	#region cree_mentorindustry
+	#region cree_MentorIndustry
 
 	public void SetMentorIndustryList(Guid userIdMentor, string industryIdsAsCsv)
 	{
@@ -83,6 +83,50 @@ public class DataAccess
 				}
 				context.SubmitChanges();
 			}
+		}
+	}
+
+	#endregion
+
+	#region cree_MenteeMentor
+
+	public cree_MenteeMentor GetMenteeMentor(Guid userIdMentor)
+	{
+		Guid userIdMentee = (Guid)Membership.GetUser().ProviderUserKey;
+		using (DataClassesDataContext context = new DataClassesDataContext())
+		{
+			return (from t in context.cree_MenteeMentors
+					  where t.UserIdMentee == userIdMentee && t.UserIdMentor == userIdMentor
+					  select t).SingleOrDefault();
+		}
+	}
+
+	public cree_MenteeMentor SetMenteeMentor(Guid userIdMentee, Guid userIdMentor, int connectionStatus)
+	{
+		using (DataClassesDataContext context = new DataClassesDataContext())
+		{
+			var menteeMentor = context.cree_MenteeMentors.Where(n => n.UserIdMentee == userIdMentee && n.UserIdMentor == userIdMentor).SingleOrDefault();
+
+			if (menteeMentor == null)
+			{
+				// insert
+				menteeMentor = new cree_MenteeMentor();
+				menteeMentor.UserIdMentee = userIdMentee;
+				menteeMentor.UserIdMentor = userIdMentor;
+				menteeMentor.ConnectionStatus = connectionStatus;
+				menteeMentor.CreatedDate = DateTime.Now;
+				menteeMentor.ModifiedDate = menteeMentor.CreatedDate;
+				context.cree_MenteeMentors.InsertOnSubmit(menteeMentor);
+				context.SubmitChanges();
+			}
+			else
+			{
+				// update
+				menteeMentor.ConnectionStatus = connectionStatus;
+				menteeMentor.ModifiedDate = DateTime.Now;
+				context.SubmitChanges();
+			}
+			return menteeMentor;
 		}
 	}
 

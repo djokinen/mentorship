@@ -45,6 +45,11 @@
 </head>
 <body>
 	<form id="form1" runat="server">
+		<asp:ScriptManager ID="scriptManager" runat="server">
+			<Services>
+				<asp:ServiceReference Path="~/membership/WebService.asmx" />
+			</Services>
+		</asp:ScriptManager>
 	<%--<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server"></ajaxToolkit:ToolkitScriptManager>--%>
 	<header>
 		<!--==============================header=================================-->

@@ -20,8 +20,33 @@
 			$("#mentor-detail p").html(mentorAsJson['Bio']);
 			$("#mentor-detail a.btn").html("Connect with " + mentorAsJson['Name']);
 		});
+
+		$("#testBtn").click(function () {
+			_connectWithMentor("C74F1DDF-9AC6-49D1-94BE-5D8C7DA36ED4", 1);
+		});
+
 	});
+
+	// var mentee_mentor = function ConnectWithMentor(userIdMentor, connectionStatus) {
+	function _connectWithMentor(userIdMentor, connectionStatus) {
+		WebService.ConnectWithMentor(userIdMentor, connectionStatus, _connectWithMentorCallback);
+	};
+
+	function _connectWithMentorCallback(retval) {
+		alert("return value: " + retval);
+	}
 </script>
+
+<style type="text/css">
+	.btn rejected {
+		background-color: #f00;
+	}
+	.btn accepted {
+		background-color: #0f0;
+	}
+</style>
+
+<a class="btn" id="testBtn" href="javascript://;">Test</a>
 
 <h1>Connect with a Mentor</h1>
 <asp:Repeater ID="repeaterFilter" runat="server">
