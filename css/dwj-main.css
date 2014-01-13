@@ -79,23 +79,21 @@ span.status {
 .form fieldset ol li input:not([type=radio]):not([type=submit]):not([type=button]):not([type="checkbox"]),
 .form fieldset ol li textarea,
 .form fieldset ol li span {
-	/*
-		display: block;
-		border-radius: .20em;
-		outline: none;
-		padding: .25em;
-		width: 75%;
-	*/
 	-moz-box-sizing: border-box;
-	/* background: none repeat scroll 0 0 #FFFFFF; */
 	border: 1px solid #DFDFDF;
-	/* color: #727272; */
-	/* float: left; */
 	display: block;
 	font: 13px/18px Arial,Helvetica,sans-serif;
-	height: 34px;
 	padding: 7px 18px 9px;
 	width: 100%;
+}
+
+.form fieldset ol li input:not([type=radio]):not([type=submit]):not([type=button]):not([type="checkbox"]),
+.form fieldset ol li span {
+	height: 34px;
+}
+
+.form fieldset ol li textarea {
+	height: 68px;
 }
 
 .form fieldset ol li span {

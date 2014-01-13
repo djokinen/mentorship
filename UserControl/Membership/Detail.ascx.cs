@@ -22,7 +22,7 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 		{
 			panelMentee.Visible = base.IsMentee;
 			panelMentor.Visible = !base.IsMentee;
-			_load(base.CurrentUserName, base.IsMentee, true); // base.IsEditMode);
+			_load(base.CurrentUserName, base.IsMentee, true);
 		}
 	}
 
@@ -79,7 +79,6 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					{
 						MentorBio.Text = profileCommon.Mentor.Bio;
 						MentorCompanyName.Text = profileCommon.Mentor.CompanyName;
-						// MentorIndustry.Text = profileCommon.Mentor.Industry;
 						MentorPhone.Text = profileCommon.Phone;
 						mentorIndustryList.DataBind();
 					}
@@ -99,7 +98,6 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					{
 						literalMentorBio.Text = "";
 						literalMentorCompanyName.Text = "";
-						// literalMentorIndustry.Text = "";
 						literalMentorPhone.Text = "";
 					}
 				}
@@ -131,20 +129,18 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 					profileCommon.Phone = MenteePhone.Text.Trim();
 					profileCommon.Mentee.Community = MenteeCommunity.Text.Trim();
 					profileCommon.Mentee.Occupation = MenteeOccupation.Text.Trim();
-					menteeMentorList.Save();
+					// menteeMentorList.Save();
 				}
 				else
 				{
 					profileCommon.Phone = MentorPhone.Text.Trim();
 					profileCommon.Mentor.Bio = MentorBio.Text.Trim();
 					profileCommon.Mentor.CompanyName = MentorCompanyName.Text.Trim();
-					// profileCommon.Mentor.Industry = MentorIndustry.Text.Trim();
 					mentorIndustryList.Save();
 				}
 				profileCommon.Save();
 				value = true;
 			}
-			// mentorIndustryList.Save();
 		}
 		return value;
 	}

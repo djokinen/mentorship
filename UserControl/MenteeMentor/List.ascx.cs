@@ -19,14 +19,6 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 		public string Industries;
 	}
 
-	protected override void OnInit(EventArgs e) { base.OnInit(e); }
-
-	protected override void OnLoad(EventArgs e)
-	{
-		base.OnLoad(e);
-		/* if (!IsPostBack) { this.DataBind(); } */
-	}
-
 	public override void DataBind()
 	{
 		base.DataBind();
@@ -35,11 +27,18 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 		string[] userNames = Roles.GetUsersInRole(RoleType.Mentor.ToString());
 		MembershipUserCollection membershipUserCollection = new MembershipUserCollection();
 		// foreach (string userName in userNames)
+		int count = 0;
 		for (int i = 0; i < userNames.Count(); i++)
 		{
 			MembershipUser membershipUser = Membership.GetUser(userNames[i]);
 			if (membershipUser != null)
 			{
+				cree_MenteeMentor menteeMentor = new DataAccess().GetMenteeMentor((Guid)membershipUser.ProviderUserKey);
+				ConnectionStatusType connectionStatusType = ConnectionStatusType.None;
+				if (menteeMentor != null) {
+					connectionStatusType == 
+				}
+
 				ProfileCommon profileCommon = Profile.GetProfile(userNames[i]);
 				if (profileCommon != null)
 				{
@@ -53,7 +52,7 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 					mentor.Name = profileCommon.FullName;
 
 					// output 1st record as selected
-					if (i == 0)
+					if (count == 0)
 					{
 						StringBuilder mentorDetail = new StringBuilder();
 						mentorDetail.AppendFormat("<input type=\"hidden\" value=\"{0}\" />", membershipUser.ProviderUserKey);
@@ -61,7 +60,35 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 						mentorDetail.AppendFormat("<div class=\"subtitle\"><em>{0}</em></div>", profileCommon.Mentor.CompanyName);
 						mentorDetail.AppendFormat("<div><strong>{0}</strong></div>", String.Join(", ", industryList.Select(n => n.Name)));
 						mentorDetail.AppendFormat("<p>{0}</p>", profileCommon.Mentor.Bio);
-						mentorDetail.AppendFormat("<a class=\"btn\">Connect with {0}</a>", profileCommon.FullName);
+
+						if (menteeMentor == null)
+						{
+							mentorDetail.AppendFormat("<a class=\"btn\">Connect with {0}</a>", profileCommon.FullName);
+						}
+						else
+						{
+							if (menteeMentor.ConnectionStatus < 0)
+							{								
+								// rejected
+								mentorDetail.AppendFormat("<a class=\"btn rejected\">Connection Failed...</a>", profileCommon.FullName);
+							}
+							else if (menteeMentor.ConnectionStatus == 0)
+							{
+								// pending
+								mentorDetail.AppendFormat("<a class=\"btn pending\">Connection Pending...</a>", profileCommon.FullName);
+							}
+							else
+							{
+								// accepted
+								mentorDetail.AppendFormat("<a class=\"btn\">Connect with {0}</a>", profileCommon.FullName);
+							}
+						}
+						mentorDetail.Append("<Fieldset style='display:none;'>");
+						mentorDetail.AppendFormat("<legend>{0}</legend>", "Message to Mentor");
+						mentorDetail.AppendFormat("<textarea rows='3'>{0}</textarea>", profileCommon.Mentor.Bio);
+						mentorDetail.Append("<button>Connect</button>");
+						mentorDetail.Append("</fieldset>");
+						count++;
 						literalMentorDetail.Text = mentorDetail.ToString();
 					}
 
@@ -69,7 +96,6 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 					text.AppendFormat("<a data-userid=\'{0}\' data-user=\'{1}\' src=\'#\'>{2}</a>",
 						membershipUser.ProviderUserKey,
 						Server.HtmlEncode(JsonConvert.SerializeObject(mentor, Formatting.None)),
-						// membershipUser.UserName);
 						profileCommon.FullName);
 					text.Append("</li>");
 				}
@@ -79,21 +105,5 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 
 		repeaterFilter.DataSource = new DataAccess().GetIndustryListAvailable(base.CurrentUserId);
 		repeaterFilter.DataBind();
-
-		// available industries
-		// repeaterAvailable.DataSource = new DataAccess().GetIndustryListAvailable(base.CurrentUserId);
-		// repeaterAvailable.DataBind();
-
-		//// selected industries
-		//List<cree_Industry> industryList = new DataAccess().GetIndustryListByMentor(base.CurrentUserId);
-		//groupMembers.Value = string.Join(",", industryList.Select(n => n.ID));
-		//repeaterSelected.DataSource = industryList;
-		//repeaterSelected.DataBind();
-	}
-
-	public void Save()
-	{
-		// new DataAccess().SetMentorIndustryList(base.CurrentUserId, groupMembers.Value.Trim());
-		// this.DataBind();
 	}
 }
