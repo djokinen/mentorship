@@ -16,7 +16,7 @@ using System.Web.Services;
 public class WebService : System.Web.Services.WebService
 {
 	[WebMethod]
-	public string ConnectWithMentor(Guid userIdMentor, int connectionStatus)
+	public string ConnectWithMentor(Guid userIdMentor)
 	{
 		string value = "fail";
 		MembershipUser userMentee = Membership.GetUser();
@@ -25,11 +25,25 @@ public class WebService : System.Web.Services.WebService
 			MembershipUser userMentor = Membership.GetUser(userIdMentor);
 			if (userMentor != null)
 			{
-				cree_MenteeMentor menteeMentor = new DataAccess().SetMenteeMentor((Guid)userMentee.ProviderUserKey, (Guid)userMentor.ProviderUserKey, connectionStatus);
-				if (menteeMentor != null)
-				{
-					value = "success";
-				}
+				cree_MenteeMentor menteeMentor = new DataAccess().SetMenteeMentor((Guid)userMentee.ProviderUserKey, (Guid)userMentor.ProviderUserKey, ConnectionStatus.Pending.GetHashCode());
+				if (menteeMentor != null) { value = "success"; }
+			}
+		}
+		return value;
+	}
+
+	[WebMethod]
+	public string SetMenteeConnectionStatus(Guid userIdMentee, int connectionStatusId)
+	{
+		string value = "fail";
+		MembershipUser userMentor = Membership.GetUser();
+		if (userMentor != null)
+		{
+			MembershipUser userMentee = Membership.GetUser(userIdMentee);
+			if (userMentee != null)
+			{
+				cree_MenteeMentor menteeMentor = new DataAccess().SetMenteeMentor((Guid)userMentee.ProviderUserKey, (Guid)userMentor.ProviderUserKey, connectionStatusId);
+				if (menteeMentor != null) { value = "success"; }
 			}
 		}
 		return value;

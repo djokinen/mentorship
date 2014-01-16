@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="List.ascx.cs" Inherits="UserControl_MenteeMentor_List" %>
 
-<%--<script src="/js/dwj-menteementor.js"></script>--%>
 <script src="/js/jquery.mixitup.min.js"></script>
 <script>
 	$(function () {
@@ -13,7 +12,21 @@
 
 			var mentorAsJson = $(this).data("user"); //alert("Bio: " + mentorAsJson['Bio']);
 
-			$("#mentor-detail input").val(mentorAsJson['UserId']);
+			//alert("li pre csid: " + mentorAsJson['ConnectionStatusId']);
+			//alert("frm pre csid: " + $("#mentor-detail").data("connectionstatusid"));
+
+			//alert("li pre userid: " + mentorAsJson["UserId"]);
+			//alert("frm pre userid: " + $("#mentor-detail").data("userid"));
+
+			$("#mentor-detail").data("userid", mentorAsJson["UserId"]);
+			$("#mentor-detail").data("connectionstatusid", mentorAsJson['ConnectionStatusId']);
+
+			//alert("li post csid: " + mentorAsJson['ConnectionStatusId']);
+			//alert("frm post csid: " + $("#mentor-detail").data("connectionstatusid"));
+
+			//alert("li post userid: " + mentorAsJson["UserId"]);
+			//alert("frm post userid: " + $("#mentor-detail").data("userid"));
+
 			$("#mentor-detail h3").html(mentorAsJson['Name']);
 			$("#mentor-detail .subtitle em").html(mentorAsJson['Company']);
 			$("#mentor-detail div strong").html(mentorAsJson['Industries']);
@@ -21,19 +34,19 @@
 			$("#mentor-detail a.btn").html("Connect with " + mentorAsJson['Name']);
 		});
 
-		$("#testBtn").click(function () {
-			_connectWithMentor("C74F1DDF-9AC6-49D1-94BE-5D8C7DA36ED4", 1);
+		$("#mentor-detail a.connect").click(function () {
+			var userid = $("#mentor-detail").data("userid");
+			// var connectionstatusid = $("#mentor-detail").data("connectionstatusid");
+			_connectWithMentor(userid);
 		});
-
 	});
 
-	// var mentee_mentor = function ConnectWithMentor(userIdMentor, connectionStatus) {
-	function _connectWithMentor(userIdMentor, connectionStatus) {
-		WebService.ConnectWithMentor(userIdMentor, connectionStatus, _connectWithMentorCallback);
+	function _connectWithMentor(userIdMentor) {
+		WebService.ConnectWithMentor(userIdMentor, _connectWithMentorCallback);
 	};
 
 	function _connectWithMentorCallback(retval) {
-		alert("return value: " + retval);
+		alert("return value: " + retval + "\nuse return value to set li and div data attr");
 	}
 </script>
 
@@ -46,8 +59,6 @@
 	}
 </style>
 
-<a class="btn" id="testBtn" href="javascript://;">Test</a>
-
 <h1>Connect with a Mentor</h1>
 <asp:Repeater ID="repeaterFilter" runat="server">
 	<ItemTemplate>
@@ -58,14 +69,13 @@
 <h2>Available Mentors</h2>
 
 <fieldset id="mixitup-container">
+
 	<div class="mentor-list left">
 		<ul><asp:Literal ID="literalMentorList" runat="server"></asp:Literal></ul>
 	</div>
 
 	<div class="mentor-list right">
-		<div id="mentor-detail">
-			<asp:Literal ID="literalMentorDetail" runat="server"></asp:Literal>
-		</div>
+		<asp:Literal ID="literalMentorDetail" runat="server"></asp:Literal>
 	</div>
 
 </fieldset>

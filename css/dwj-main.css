@@ -163,12 +163,40 @@ span.status {
 			/*width: 160px;*/
 		}
 
-	#mixitup-container .mix {
-		opacity: 0;
-		display: none;
-	}
+#mixitup-container .mix {
+	opacity: 0;
+	display: none;
+}
 
-	h3 {
-		color:#FE5B13;
-		font-size:large;
-	}
+h3 {
+	color: #FE5B13;
+	font-size: large;
+}
+
+/* 
+	None = 0, 
+	Rejected = -1, 
+	Pending = 1, 
+	Accepted = 2 
+*/
+
+/* None = 0 */
+.csid0 {
+	/*color: #f80;*/
+}
+
+/* Rejected = -1 */
+.csid-1 {
+	fill-opacity:.5;
+	color: #f80;
+}
+
+/* Pending = 1 */
+.csid1 {
+	color: #f80;
+}
+
+/* Accepted = 2 */
+.csid2 {
+	color: #f80;
+}

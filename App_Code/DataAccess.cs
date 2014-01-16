@@ -101,7 +101,7 @@ public class DataAccess
 		}
 	}
 
-	public cree_MenteeMentor SetMenteeMentor(Guid userIdMentee, Guid userIdMentor, int connectionStatus)
+	public cree_MenteeMentor SetMenteeMentor(Guid userIdMentee, Guid userIdMentor, int connectionStatusId)
 	{
 		using (DataClassesDataContext context = new DataClassesDataContext())
 		{
@@ -113,7 +113,7 @@ public class DataAccess
 				menteeMentor = new cree_MenteeMentor();
 				menteeMentor.UserIdMentee = userIdMentee;
 				menteeMentor.UserIdMentor = userIdMentor;
-				menteeMentor.ConnectionStatus = connectionStatus;
+				menteeMentor.ConnectionStatus = connectionStatusId;
 				menteeMentor.CreatedDate = DateTime.Now;
 				menteeMentor.ModifiedDate = menteeMentor.CreatedDate;
 				context.cree_MenteeMentors.InsertOnSubmit(menteeMentor);
@@ -122,7 +122,7 @@ public class DataAccess
 			else
 			{
 				// update
-				menteeMentor.ConnectionStatus = connectionStatus;
+				menteeMentor.ConnectionStatus = connectionStatusId;
 				menteeMentor.ModifiedDate = DateTime.Now;
 				context.SubmitChanges();
 			}
