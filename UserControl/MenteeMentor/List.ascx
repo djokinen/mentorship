@@ -6,32 +6,35 @@
 		// init filtering
 		$('#mixitup-container').mixitup();
 
+		// add click event to mentor list
 		$(".mentor-list.left a").click(function () {
 			$(".mentor-list ul li").removeClass("active");
 			$(this).parent("li").addClass("active");
 
 			var mentorAsJson = $(this).data("user"); //alert("Bio: " + mentorAsJson['Bio']);
-
-			//alert("li pre csid: " + mentorAsJson['ConnectionStatusId']);
-			//alert("frm pre csid: " + $("#mentor-detail").data("connectionstatusid"));
-
-			//alert("li pre userid: " + mentorAsJson["UserId"]);
-			//alert("frm pre userid: " + $("#mentor-detail").data("userid"));
-
 			$("#mentor-detail").data("userid", mentorAsJson["UserId"]);
 			$("#mentor-detail").data("connectionstatusid", mentorAsJson['ConnectionStatusId']);
-
-			//alert("li post csid: " + mentorAsJson['ConnectionStatusId']);
-			//alert("frm post csid: " + $("#mentor-detail").data("connectionstatusid"));
-
-			//alert("li post userid: " + mentorAsJson["UserId"]);
-			//alert("frm post userid: " + $("#mentor-detail").data("userid"));
-
-			$("#mentor-detail h3").html(mentorAsJson['Name']);
+			// $("#mentor-detail h3").html(mentorAsJson['Name']);
 			$("#mentor-detail .subtitle em").html(mentorAsJson['Company']);
 			$("#mentor-detail div strong").html(mentorAsJson['Industries']);
 			$("#mentor-detail p").html(mentorAsJson['Bio']);
-			$("#mentor-detail a.btn").html("Connect with " + mentorAsJson['Name']);
+
+			/* 
+			None = 0, 
+			Rejected = -1, 
+			Pending = 1, 
+			Accepted = 2 */
+			switch (mentorAsJson['ConnectionStatusId']) {
+				case 1: // pending
+					$("#mentor-detail h3").html(mentorAsJson['Name']) + " (<em class='connecting'>Connection Requested</em>)";
+					break;
+				case 2: // accepted
+					$("#mentor-detail h3").html(mentorAsJson['Name']) + " (<em class='connected'>Connected</em>)";
+					break;
+				default: // rejected, none
+					$("#mentor-detail h3").html(mentorAsJson['Name']);
+					$("#mentor-detail a.btn").html("Connect with " + mentorAsJson['Name']);
+			}
 		});
 
 		$("#mentor-detail a.connect").click(function () {
@@ -46,6 +49,18 @@
 	};
 
 	function _connectWithMentorCallback(retval) {
+		// int retval = connection status id
+		// None = 0, Rejected = -1, Pending = 1, Accepted = 2
+		switch (retval) {
+			case -1:
+				break;
+			case 0:
+				break;
+			case 1:
+				break;
+			default:
+
+		}
 		alert("return value: " + retval + "\nuse return value to set li and div data attr");
 	}
 </script>

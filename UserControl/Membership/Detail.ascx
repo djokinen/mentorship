@@ -85,7 +85,7 @@
 					<asp:Literal ID="literalMentorCompanyName" runat="server"></asp:Literal>
 				</li>
 
-<%--				<li>
+<%--			<li>
 					<label for="MentorIndustry">Industry</label>
 					<asp:TextBox ID="MentorIndustry" runat="server" placeholder="Industry"></asp:TextBox>
 					<asp:Literal ID="literalMentorIndustry" runat="server"></asp:Literal>

@@ -16,9 +16,9 @@ using System.Web.Services;
 public class WebService : System.Web.Services.WebService
 {
 	[WebMethod]
-	public string ConnectWithMentor(Guid userIdMentor)
+	public int ConnectWithMentor(Guid userIdMentor)
 	{
-		string value = "fail";
+		int value = ConnectionStatus.None.GetHashCode();
 		MembershipUser userMentee = Membership.GetUser();
 		if (userMentee != null)
 		{
@@ -26,7 +26,10 @@ public class WebService : System.Web.Services.WebService
 			if (userMentor != null)
 			{
 				cree_MenteeMentor menteeMentor = new DataAccess().SetMenteeMentor((Guid)userMentee.ProviderUserKey, (Guid)userMentor.ProviderUserKey, ConnectionStatus.Pending.GetHashCode());
-				if (menteeMentor != null) { value = "success"; }
+				if (menteeMentor != null)
+				{
+					value = menteeMentor.ConnectionStatus.GetHashCode(); ;
+				}
 			}
 		}
 		return value;

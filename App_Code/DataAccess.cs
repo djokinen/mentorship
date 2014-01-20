@@ -101,6 +101,19 @@ public class DataAccess
 		}
 	}
 
+	/// <summary>Get all mentees connected to the logged in user</summary>
+	/// <returns></returns>
+	public List<cree_MenteeMentor> GetMenteeMentor()
+	{
+		Guid userIdMentor = (Guid)Membership.GetUser().ProviderUserKey;
+		using (DataClassesDataContext context = new DataClassesDataContext())
+		{
+			return (from t in context.cree_MenteeMentors
+					  where t.UserIdMentor == userIdMentor
+					  select t).ToList();
+		}
+	}
+
 	public cree_MenteeMentor SetMenteeMentor(Guid userIdMentee, Guid userIdMentor, int connectionStatusId)
 	{
 		using (DataClassesDataContext context = new DataClassesDataContext())
