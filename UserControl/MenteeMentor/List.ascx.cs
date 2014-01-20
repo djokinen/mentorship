@@ -116,5 +116,5 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 
 		repeaterFilter.DataSource = new DataAccess().GetIndustryListAvailable(base.CurrentUserId);
 		repeaterFilter.DataBind();
-	}}
+	}
 }
