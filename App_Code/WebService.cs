@@ -28,7 +28,7 @@ public class WebService : System.Web.Services.WebService
 				cree_MenteeMentor menteeMentor = new DataAccess().SetMenteeMentor((Guid)userMentee.ProviderUserKey, (Guid)userMentor.ProviderUserKey, ConnectionStatus.Pending.GetHashCode());
 				if (menteeMentor != null)
 				{
-					value = menteeMentor.ConnectionStatus.GetHashCode(); ;
+					value = menteeMentor.ConnectionStatus.GetHashCode();
 				}
 			}
 		}
@@ -36,6 +36,26 @@ public class WebService : System.Web.Services.WebService
 	}
 
 	[WebMethod]
+	public int ConnectWithMentee(Guid userIdMentee, int connectionStatusId)
+	{
+		MembershipUser userMentor = Membership.GetUser();
+		if (userMentor != null)
+		{
+			MembershipUser userMentee = Membership.GetUser(userIdMentee);
+			if (userMentee != null)
+			{
+				cree_MenteeMentor menteeMentor = new DataAccess().SetMenteeMentor((Guid)userMentee.ProviderUserKey, (Guid)userMentor.ProviderUserKey, connectionStatusId);
+				if (menteeMentor != null)
+				{
+					return menteeMentor.ConnectionStatus.GetHashCode();
+				}
+			}
+		}
+		return ConnectionStatus.None.GetHashCode();
+	}
+
+	[WebMethod]
+	[Obsolete("Not in use", true)]
 	public string SetMenteeConnectionStatus(Guid userIdMentee, int connectionStatusId)
 	{
 		string value = "fail";

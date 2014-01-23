@@ -159,7 +159,11 @@ a {
 		color: #313131;
 		display: inline-block;
 		border: 1px solid #ececec;
-		font: italic 12px/16px Georgia, 'Times New Roman', Times, serif;
+
+		/*
+			djokinen
+			font: italic 12px/16px Georgia, 'Times New Roman', Times, serif;
+		*/
 		padding: 7px 19px 10px;
 		/* margin-top: 26px; */
 		background-color: #fff;
