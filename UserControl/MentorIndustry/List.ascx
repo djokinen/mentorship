@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/js/dwj-industry.js"></script>
 
 <fieldset>
-	<legend>Add Industry</legend>
+	<h2>My Industries</h2>
 	<p>All available industries are listed in the left-hand column.</p>
 	<div class="member_list left">
 		<label>Available Industries:</label>

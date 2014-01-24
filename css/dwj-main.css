@@ -187,7 +187,7 @@ h3 {
 
 /* Rejected = -1 */
 .csid-1 {
-	fill-opacity:.5;
+	fill-opacity: .5;
 	color: #f80;
 }
 
@@ -200,3 +200,33 @@ h3 {
 .csid2 {
 	color: #f80;
 }
+
+/* mentee mentor connect form */
+#mentee-mentor-list label {
+	font-weight: bolder;
+}
+
+#mentee-mentor-list .btn {
+	width: 68px;
+	text-align: center;
+	opacity: .75;
+}
+
+#mentee-mentor-list li {
+	width: 100%;
+}
+
+	#mentee-mentor-list .btn:hover {
+		opacity: 1;
+	}
+
+	#mentee-mentor-list .btn.reject {
+		color: #fff;
+		background-color: #D34836;
+	}
+
+	#mentee-mentor-list .btn.accept {
+		color: #fff;
+		background-color: #0F9D58;
+	}
+/* end mentee mentor connect form */

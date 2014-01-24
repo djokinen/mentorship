@@ -90,6 +90,7 @@ public class DataAccess
 
 	#region cree_MenteeMentor
 
+	/// <summary>Try and get the mentor for the logged in user</summary>
 	public cree_MenteeMentor GetMenteeMentor(Guid userIdMentor)
 	{
 		Guid userIdMentee = (Guid)Membership.GetUser().ProviderUserKey;
@@ -110,6 +111,7 @@ public class DataAccess
 		{
 			return (from t in context.cree_MenteeMentors
 					  where t.UserIdMentor == userIdMentor
+					  orderby t.ConnectionStatus descending
 					  select t).ToList();
 		}
 	}

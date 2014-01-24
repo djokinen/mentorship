@@ -2,6 +2,7 @@
 
 <%@ Register Src="~/UserControl/MentorIndustry/List.ascx" TagName="List" TagPrefix="mentorIndustry" %>
 <%@ Register Src="~/UserControl/MenteeMentor/List.ascx" TagName="List" TagPrefix="menteeMentor" %>
+<%@ Register Src="~/UserControl/MenteeMentor/Connect.ascx" TagName="Connect" TagPrefix="menteeMentor" %>
 
 <%-- http://24ways.org/2009/have-a-field-day-with-html5-forms/ --%>
 
@@ -13,6 +14,7 @@
 
 	<fieldset>
 		<%--<legend>Required Info</legend>--%>
+		<h2>General Information</h2>
 		<ol>
 
 			<li>
@@ -73,6 +75,7 @@
 
 			<!-- mentor -->
 			<asp:PlaceHolder ID="panelMentor" runat="server">
+
 				<li>
 					<label for="MentorPhone">Phone</label>
 					<asp:TextBox ID="MentorPhone" runat="server" placeholder="Phone Number"></asp:TextBox>
@@ -99,6 +102,10 @@
 				</li>
 
 				<li>
+					<menteeMentor:Connect ID="menteeMentorConnect" runat="server" />
+				</li>
+
+				<li>
 					<mentorIndustry:List ID="mentorIndustryList" runat="server" />
 				</li>
 
@@ -108,6 +115,7 @@
 						<asp:Label ID="labelStatusMentor" runat="server" EnableViewState="false" CssClass="status"></asp:Label>
 					</div>
 				</li>
+
 			</asp:PlaceHolder>
 
 		</ol>
