@@ -14,7 +14,7 @@
 			var mentorAsJson = $(this).data("user"); //alert("Bio: " + mentorAsJson['Bio']);
 			$("#mentor-detail").data("userid", mentorAsJson["UserId"]);
 			$("#mentor-detail").data("connectionstatusid", mentorAsJson['ConnectionStatusId']);
-			// $("#mentor-detail h3").html(mentorAsJson['Name']);
+			$("#mentor-detail .title").html(mentorAsJson['Name']);
 			$("#mentor-detail .subtitle em").html(mentorAsJson['Company']);
 			$("#mentor-detail div strong").html(mentorAsJson['Industries']);
 			$("#mentor-detail p").html(mentorAsJson['Bio']);
@@ -26,27 +26,40 @@
 			Accepted = 2 */
 			switch (mentorAsJson['ConnectionStatusId']) {
 				case 1: // pending
-					$("#mentor-detail h3").html(mentorAsJson['Name']) + " (<em class='connecting'>Connection Requested</em>)";
+					$("#mentor-detail a.btn").hide();
+					$("#mentor-detail .status").html("Awaiting approval from mentor");
 					break;
 				case 2: // accepted
-					$("#mentor-detail h3").html(mentorAsJson['Name']) + " (<em class='connected'>Connected</em>)";
+					$("#mentor-detail a.btn").hide();
+					$("#mentor-detail .status").html("You are connected to this mentor");
 					break;
-				default: // rejected, none
-					$("#mentor-detail h3").html(mentorAsJson['Name']);
-					$("#mentor-detail a.btn").html("Connect with " + mentorAsJson['Name']);
+				case -1: // rejected
+					$("#mentor-detail a.btn").hide();
+					$("#mentor-detail .status").html("You can not connect to this mentor");
+					break;
+				default: // none
+					$("#mentor-detail a.btn").show();
+					$("#mentor-detail .status").html("Connection available");
 			}
 		});
 
 		$("#mentor-detail a.connect").click(function () {
-			var userid = $("#mentor-detail").data("userid");
-			// var connectionstatusid = $("#mentor-detail").data("connectionstatusid");
-			_connectWithMentor(userid);
+			$(this).hide();
+			$("#cxn-request-form").show();
+			// var userid = $("#mentor-detail").data("userid");
+			// _connectWithMentor(userid);
 		});
-	});
 
-	function _connectWithMentor(userIdMentor) {
-		WebService.ConnectWithMentor(userIdMentor, _connectWithMentorCallback);
-	};
+		$("#cxn-send-button").click(function () {
+			var userid = $("#mentor-detail").data("userid");
+		});
+
+		$("#cxn-cancel-button").click(function () {
+			$("#mentor-detail a.connect").show();
+			$("#cxn-request-form").hide();
+		});
+
+	});
 
 	function _connectWithMentorCallback(retval) {
 		// int retval = connection status id
@@ -57,6 +70,8 @@
 			case 0:
 				break;
 			case 1:
+				$("#cxn-request-form").hide();
+				// update title
 				break;
 			default:
 
@@ -65,23 +80,14 @@
 	}
 </script>
 
-<style type="text/css">
-	.btn rejected {
-		background-color: #f00;
-	}
-	.btn accepted {
-		background-color: #0f0;
-	}
-</style>
-
-<h1>Connect with a Mentor</h1>
+<h2>Connect with a Mentor</h2>
 <asp:Repeater ID="repeaterFilter" runat="server">
 	<ItemTemplate>
 		<a href="javascript://;" class="btn filter" data-filter="<%# Eval("ID") %>"><%# Eval("Name") %></a>
 	</ItemTemplate>
 </asp:Repeater>
 
-<h2>Available Mentors</h2>
+<h3>Available Mentors</h3>
 
 <fieldset id="mixitup-container">
 

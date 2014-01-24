@@ -42,6 +42,8 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 
 	private void _load(string username, bool isMentee, bool isEditMode)
 	{
+
+		// loginView.DataBind();
 		MembershipUser membershipUser = Membership.GetUser(base.CurrentUserName);
 		// if member exists
 		if (membershipUser != null)
@@ -81,7 +83,8 @@ public partial class UserControl_Membership_Detail : BaseUserControl
 						MentorCompanyName.Text = profileCommon.Mentor.CompanyName;
 						MentorPhone.Text = profileCommon.Phone;
 						mentorIndustryList.DataBind();
-						menteeMentorConnect.DataBind();
+						loginView.DataBind();
+						// menteeMentorConnect.DataBind();
 					}
 				}
 				else

@@ -59,33 +59,23 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 					{
 						StringBuilder mentorDetail = new StringBuilder();
 						mentorDetail.AppendFormat("<div id=\"mentor-detail\" data-userid=\"{0}\" data-connectionstatusid=\"{1}\">", membershipUser.ProviderUserKey, connectionStatusId);
-						mentorDetail.AppendFormat("<h3>{0}</h3>", profileCommon.FullName);
+						mentorDetail.AppendFormat("<div class=\"title\">{0}</div>", profileCommon.FullName);
+						
+						mentorDetail.AppendFormat("<div class=\"status\">{0}</div>", _getStatusMessage(connectionStatusId));
+
 						mentorDetail.AppendFormat("<div class=\"subtitle\"><em>{0}</em></div>", profileCommon.Mentor.CompanyName);
 						mentorDetail.AppendFormat("<div><strong>{0}</strong></div>", String.Join(", ", industryList.Select(n => n.Name)));
 						mentorDetail.AppendFormat("<p>{0}</p>", profileCommon.Mentor.Bio);
-
-						if (connectionStatusId == ConnectionStatus.Rejected.GetHashCode())
-						{
-							mentorDetail.AppendFormat("<a class=\"btn rejected\">Connection Failed...</a>", profileCommon.FullName);
-						}
-						else if (connectionStatusId == ConnectionStatus.Pending.GetHashCode())
-						{
-							mentorDetail.AppendFormat("<a class=\"btn pending\">Connection Pending...</a>", profileCommon.FullName);
-						}
-						else if (connectionStatusId == ConnectionStatus.Accepted.GetHashCode())
-						{
-							mentorDetail.AppendFormat("<a class=\"btn accepted\">Connected to {0}</a>", profileCommon.FullName);
-						}
-						else
-						{
-							mentorDetail.AppendFormat("<a class=\"btn connect\">Connect with {0}</a>", profileCommon.FullName);
-						}
-
-						mentorDetail.Append("<Fieldset style='display:none;'>");
-						mentorDetail.AppendFormat("<legend>{0}</legend>", "Message to Mentor");
+						
+						mentorDetail.Append("<Fieldset id=\"cxn-request-form\" style='display:none;'>");
+						mentorDetail.AppendFormat("<legend>{0}</legend>", "Request Connection");
 						mentorDetail.AppendFormat("<textarea rows='3'>{0}</textarea>", profileCommon.Mentor.Bio);
-						mentorDetail.Append("<button>Connect</button>");
+						mentorDetail.Append("<a class=\"btn accept\" href=\"javascript://\" id=\"cxn-send-button\">Send Request</a>");
+						mentorDetail.Append("<a class=\"btn reject\" href=\"javascript://\" id=\"cxn-cancel-button\">Cancel</button>");
 						mentorDetail.Append("</fieldset>");
+
+						mentorDetail.Append(_getButtonHtml(connectionStatusId, profileCommon.FullName));
+
 						mentorDetail.Append("</div>");
 						count++;
 						literalMentorDetail.Text = mentorDetail.ToString();
@@ -116,5 +106,38 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 
 		repeaterFilter.DataSource = new DataAccess().GetIndustryListAvailable(base.CurrentUserId);
 		repeaterFilter.DataBind();
+	}
+
+
+	private string _getButtonHtml(int connectionStatusId, string mentorName)
+	{
+		if (connectionStatusId == ConnectionStatus.None.GetHashCode())
+		{
+			return string.Format("<a class=\"btn connect\">Connect with {0}</a>", mentorName);
+		}
+		else
+		{
+			return string.Empty;
+		}
+	}
+
+	private string _getStatusMessage(int connectionStatusId)
+	{
+		if (connectionStatusId == ConnectionStatus.Rejected.GetHashCode())
+		{
+			return "You can not connect to this mentor";
+		}
+		else if (connectionStatusId == ConnectionStatus.Pending.GetHashCode())
+		{
+			return "Awaiting approval from mentor";
+		}
+		else if (connectionStatusId == ConnectionStatus.Accepted.GetHashCode())
+		{
+			return "You are connected to this mentor";
+		}
+		else
+		{
+			return "Connection available";
+		}
 	}
 }

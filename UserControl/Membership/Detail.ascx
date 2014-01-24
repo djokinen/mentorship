@@ -13,11 +13,23 @@
 	</div>
 
 	<fieldset>
-		<%--<legend>Required Info</legend>--%>
-		<h2>General Information</h2>
+
 		<ol>
 
+			<asp:LoginView ID="loginView" runat="server">
+				<RoleGroups>
+					<asp:RoleGroup Roles="mentor">
+						<ContentTemplate>
+							<li>
+								<menteeMentor:Connect ID="menteeMentorConnect" runat="server" />
+							</li>						
+						</ContentTemplate>
+					</asp:RoleGroup>
+				</RoleGroups>
+			</asp:LoginView>
+
 			<li>
+				<h2>General Information</h2>
 				<label>User Name (<em>email address</em>)</label>
 				<span id="spanUserName"><asp:Literal ID="literalUserName" runat="server"></asp:Literal></span>
 			</li>
@@ -99,10 +111,6 @@
 					<label for="MentorBio">Bio</label>
 					<asp:TextBox TextMode="MultiLine" Rows="3" ID="MentorBio" runat="server" placeholder="Bio"></asp:TextBox>
 					<asp:Literal ID="literalMentorBio" runat="server"></asp:Literal>
-				</li>
-
-				<li>
-					<menteeMentor:Connect ID="menteeMentorConnect" runat="server" />
 				</li>
 
 				<li>
