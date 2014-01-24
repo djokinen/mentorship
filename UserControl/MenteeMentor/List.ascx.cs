@@ -70,7 +70,7 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 						mentorDetail.Append("<Fieldset id=\"cxn-request-form\" style='display:none;'>");
 						mentorDetail.AppendFormat("<legend>{0}</legend>", "Request Connection");
 						mentorDetail.AppendFormat("<textarea rows='3'>{0}</textarea>", profileCommon.Mentor.Bio);
-						mentorDetail.Append("<a class=\"btn accept\" href=\"javascript://\" id=\"cxn-send-button\">Send Request</a>");
+						mentorDetail.Append("<a class=\"btn accept\" href=\"javascript://\" id=\"cxn-send-button\">Send</a>");
 						mentorDetail.Append("<a class=\"btn reject\" href=\"javascript://\" id=\"cxn-cancel-button\">Cancel</button>");
 						mentorDetail.Append("</fieldset>");
 
@@ -113,7 +113,7 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 	{
 		if (connectionStatusId == ConnectionStatus.None.GetHashCode())
 		{
-			return string.Format("<a class=\"btn connect\">Connect with {0}</a>", mentorName);
+			return string.Format("<a class=\"btn accept connect\">Connect with {0}</a>", mentorName);
 		}
 		else
 		{

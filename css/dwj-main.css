@@ -194,18 +194,18 @@ h3 {
 
 /* Pending = 1 */
 .csid1 {
-	color:#fff;
+	color: #fff;
 	background-color: #f80;
 }
 
 /* Accepted = 2 */
 .csid2 {
 	color: #fff;
-	background-color:#0F9D58;
+	background-color: #0F9D58;
 }
 
 .status {
-	color:#f00;
+	color: #f00;
 }
 
 
@@ -214,8 +214,8 @@ h3 {
 	font-weight: bolder;
 }
 
-#mentee-mentor-list .btn {
-	width: 68px;
+.btn.reject, .btn.accept {
+	min-width: 68px;
 	text-align: center;
 	opacity: .75;
 }
@@ -224,20 +224,29 @@ h3 {
 	width: 100%;
 }
 
-	/*#mentee-mentor-list .btn:hover {*/
-	.btn:hover {
-		opacity: 1;
-	}
+/*#mentee-mentor-list .btn:hover {*/
+.btn.accept:hover,
+.btn.reject:hover {
+	opacity: 1;
+}
 
-	/*#mentee-mentor-list .btn.reject {*/
-	.btn.reject {
-		color: #fff;
-		background-color: #D34836;
-	}
+.btn.accept:hover {
+	background-color: #0F9D58;
+}
 
-	/*#mentee-mentor-list .btn.accept {*/
-	.btn.accept {
-		color: #fff;
-		background-color: #0F9D58;
-	}
+.btn.reject:hover {
+	background-color: #D34836;
+}
+
+/*#mentee-mentor-list .btn.reject {*/
+.btn.reject {
+	color: #fff;
+	background-color: #D34836;
+}
+
+/*#mentee-mentor-list .btn.accept {*/
+.btn.accept {
+	color: #fff;
+	background-color: #0F9D58;
+}
 /* end mentee mentor connect form */

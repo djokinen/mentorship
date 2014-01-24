@@ -126,6 +126,9 @@
   <data name="IsEditMode" xml:space="preserve">
     <value>iem</value>
   </data>
+  <data name="NoReplyEmail" xml:space="preserve">
+    <value>noreply@domain.ca</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>pwd</value>
   </data>
