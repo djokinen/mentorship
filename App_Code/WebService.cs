@@ -16,7 +16,7 @@ using System.Web.Services;
 public class WebService : System.Web.Services.WebService
 {
 	[WebMethod]
-	public int ConnectWithMentor(Guid userIdMentor)
+	public int ConnectWithMentor(Guid userIdMentor, string message)
 	{
 		int value = ConnectionStatus.None.GetHashCode();
 		MembershipUser userMentee = Membership.GetUser();
@@ -29,7 +29,7 @@ public class WebService : System.Web.Services.WebService
 				if (menteeMentor != null)
 				{
 					value = menteeMentor.ConnectionStatus.GetHashCode();
-
+					bool sent = Global.SendConnectEmailToMentor(userMentor, message);
 				}
 			}
 		}

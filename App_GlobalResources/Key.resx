@@ -123,14 +123,18 @@
   <data name="DateFormat" xml:space="preserve">
     <value>MMM dd, yyyy</value>
   </data>
+  <data name="EmailAccountInfo" xml:space="preserve">
+    <value>djokinen@yahoo.com</value>
+    <comment>info@spiritusmentoringgroup.com</comment>
+  </data>
   <data name="IsEditMode" xml:space="preserve">
     <value>iem</value>
   </data>
-  <data name="NoReplyEmail" xml:space="preserve">
-    <value>noreply@domain.ca</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>pwd</value>
+  </data>
+  <data name="ProfileUrl" xml:space="preserve">
+    <value>/membership/profile.aspx</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>username</value>

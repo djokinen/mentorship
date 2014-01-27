@@ -11,38 +11,35 @@ using System.Web.Security;
 /// </summary>
 public static class Global
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="membershipUser"></param>
-	/// <param name="accountStatus"></param>
-	/// <returns></returns>
-	/// <see cref="https://basecamp.com/2043159/projects/1398005-lake-devo/todos/36498535-need-content-for-the"/>
-	public static bool SendConnectEmail(MembershipUser membershipUser, string accountStatus)
+	public static bool SendConnectEmailToMentor(MembershipUser membershipUserMentor, string message)
 	{
 		bool value = false;
-		if (membershipUser != null)
+		if (membershipUserMentor != null)
 		{
+			MembershipUser membershipUserMentee = Membership.GetUser();
 			string baseUrl = Global.GetBaseUrl();
 			// mail message
 			MailMessage mailMessage = new MailMessage();
 			// from
-			mailMessage.From = new MailAddress(Resources.Key.NoReplyEmail);
+			// mailMessage.From = new MailAddress(Resources.Key.NoReplyEmail);
+			mailMessage.From = new MailAddress(membershipUserMentee.Email);
 			// bcc
-			// mailMessage.Bcc.Add(GetMembershipUserEmailAddresses(RoleType.Admin));
+			mailMessage.Bcc.Add(Resources.Key.EmailAccountInfo);
 			// to
-			// mailMessage.To.Add(ldUser.EmailAddress);
+			mailMessage.To.Add(membershipUserMentor.Email);
 
 			mailMessage.IsBodyHtml = true;
-			mailMessage.Subject = "Youth Mentorship: Your instructor account status";
+			mailMessage.Subject = "Cree Youth Mentorship: Connection Request";
 
 			StringBuilder body = new StringBuilder();
-			// body.AppendFormat("<p>Your Lake Devo account has the status '{0}' for username '{1}'</p>", accountStatus, ldUser.UserName).AppendLine();
-			body.AppendFormat("<p>To access Lake Devo, go to {0}</p>", baseUrl);
-			// body.AppendFormat("<p>If you have any questions, please contact the Lake Devo Team at lakedevo@ryerson.ca.</p>", baseUrl, Resources.Key.ContactUsUrl);
-			body.Append("<p>Enjoy your time in Lake Devo!<br />The Lake Devo Team</p>");
-			// body.Append(GetEmailFooterAsHtml(languageCulture));
 
+			body.Append("<p>Someone wants you to be their mentor. See their personal message to you here:</p>");
+			if (string.IsNullOrWhiteSpace(message)) { body.Append("<blockquote>No custom message sent</blockquote>"); }
+			else { body.AppendFormat("<blockquote>{0}</blockquote>", message); }
+
+			body.AppendFormat("<p>To accept this connection, click the following link to update your account connections:</p>", baseUrl);
+			body.AppendFormat("<ul><li>{0}{1}</li></ul>", baseUrl, Resources.Key.ProfileUrl);
+			body.AppendFormat("<p>If you have any questions, please contact us at {0}.</p>", baseUrl, Resources.Key.EmailAccountInfo);
 			mailMessage.Body = body.ToString();
 			try
 			{
@@ -62,5 +59,4 @@ public static class Global
 			HttpContext.Current.Request.Url.Authority,
 			HttpContext.Current.Request.ApplicationPath).TrimEnd('/');
 	}
-
 }

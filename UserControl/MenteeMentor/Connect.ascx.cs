@@ -19,10 +19,10 @@ public partial class UserControl_MenteeMentor_Connect : BaseUserControl
 	{
 		base.DataBind();
 		StringBuilder text = new StringBuilder();
-		List<cree_MenteeMentor> menteeMentorList = new DataAccess().GetMenteeMentor();
+		List<cree_MenteeMentor> menteeMentorList = new DataAccess().GetMenteeMentor().Where(n=> n.ConnectionStatus != 0).ToList();
 		if (menteeMentorList.Count == 0)
 		{
-			text.AppendFormat("<li><strong>No connections</strong></li>", null);
+			text.Append("<li><strong>No pending connections</strong></li>");
 		}
 		else
 		{

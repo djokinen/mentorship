@@ -11,55 +11,59 @@
 			$(".mentor-list ul li").removeClass("active");
 			$(this).parent("li").addClass("active");
 
-			var mentorAsJson = $(this).data("user"); //alert("Bio: " + mentorAsJson['Bio']);
+			// hide connection request form
+			$("#cxn-request-form").hide();
+
+			// show mentor detail form
+			var mentorAsJson = $(this).data("user");
 			$("#mentor-detail").data("userid", mentorAsJson["UserId"]);
 			$("#mentor-detail").data("connectionstatusid", mentorAsJson['ConnectionStatusId']);
 			$("#mentor-detail .title").html(mentorAsJson['Name']);
+			$("#mentor-detail #cnx-request-button").html("Connect with " + mentorAsJson['Name']);
 			$("#mentor-detail .subtitle em").html(mentorAsJson['Company']);
 			$("#mentor-detail div strong").html(mentorAsJson['Industries']);
 			$("#mentor-detail p").html(mentorAsJson['Bio']);
 
-			/* 
-			None = 0, 
-			Rejected = -1, 
-			Pending = 1, 
-			Accepted = 2 */
-			switch (mentorAsJson['ConnectionStatusId']) {
-				case 1: // pending
-					$("#mentor-detail a.btn").hide();
-					$("#mentor-detail .status").html("Awaiting approval from mentor");
-					break;
-				case 2: // accepted
-					$("#mentor-detail a.btn").hide();
-					$("#mentor-detail .status").html("You are connected to this mentor");
-					break;
-				case -1: // rejected
-					$("#mentor-detail a.btn").hide();
-					$("#mentor-detail .status").html("You can not connect to this mentor");
-					break;
-				default: // none
-					$("#mentor-detail a.btn").show();
-					$("#mentor-detail .status").html("Connection available");
-			}
+			_setConnectionStatusInDetailForm(mentorAsJson['ConnectionStatusId']);
 		});
 
-		$("#mentor-detail a.connect").click(function () {
+		$("#mentor-detail #cnx-request-button").click(function () {
 			$(this).hide();
 			$("#cxn-request-form").show();
-			// var userid = $("#mentor-detail").data("userid");
-			// _connectWithMentor(userid);
 		});
 
 		$("#cxn-send-button").click(function () {
 			var userid = $("#mentor-detail").data("userid");
+			var message = $("#cxn-request-form textarea").val();
+			WebService.ConnectWithMentor(userid, message, _connectWithMentorCallback);
 		});
 
 		$("#cxn-cancel-button").click(function () {
-			$("#mentor-detail a.connect").show();
+			$("#mentor-detail #cnx-request-button").show();
 			$("#cxn-request-form").hide();
 		});
-
 	});
+
+	function _setConnectionStatusInDetailForm(connectionStatusId) {
+		/* None = 0, Rejected = -1, Pending = 1, Accepted = 2 */
+		switch (connectionStatusId) {
+			case 1: // pending
+				$("#mentor-detail #cnx-request-button").hide();
+				$("#mentor-detail .status").html("Awaiting approval from mentor");
+				break;
+			case 2: // accepted
+				$("#mentor-detail #cnx-request-button").hide();
+				$("#mentor-detail .status").html("You are connected to this mentor");
+				break;
+			case -1: // rejected
+				$("#mentor-detail #cnx-request-button").hide();
+				$("#mentor-detail .status").html("You can not connect to this mentor");
+				break;
+			default: // none
+				$("#mentor-detail #cnx-request-button").show();
+				$("#mentor-detail .status").html("Connection available");
+		}
+	}
 
 	function _connectWithMentorCallback(retval) {
 		// int retval = connection status id
@@ -70,13 +74,21 @@
 			case 0:
 				break;
 			case 1:
+				// hide connection request form
 				$("#cxn-request-form").hide();
-				// update title
+
+				// hide connection request button in detail form
+				$("#mentor-detail #cnx-request-button").hide();
+
+				// update connection status message [title]
+				_setConnectionStatusInDetailForm(retval);
+
+				// update csid for current li
+				$(".mentor-list li.active").toggleClass("csid0 csid" + retval);
+				$(".mentor-list li.active a").data("user").ConnectionStatusId = retval;
 				break;
 			default:
-
 		}
-		alert("return value: " + retval + "\nuse return value to set li and div data attr");
 	}
 </script>
 

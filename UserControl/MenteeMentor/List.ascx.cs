@@ -69,9 +69,9 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 						
 						mentorDetail.Append("<Fieldset id=\"cxn-request-form\" style='display:none;'>");
 						mentorDetail.AppendFormat("<legend>{0}</legend>", "Request Connection");
-						mentorDetail.AppendFormat("<textarea rows='3'>{0}</textarea>", profileCommon.Mentor.Bio);
+						mentorDetail.AppendFormat("<textarea rows='3' placeholder='Personal message to mentor'>{0}</textarea>", profileCommon.Mentor.Bio);
 						mentorDetail.Append("<a class=\"btn accept\" href=\"javascript://\" id=\"cxn-send-button\">Send</a>");
-						mentorDetail.Append("<a class=\"btn reject\" href=\"javascript://\" id=\"cxn-cancel-button\">Cancel</button>");
+						mentorDetail.Append("<a class=\"btn reject\" href=\"javascript://\" id=\"cxn-cancel-button\">Cancel</a>");
 						mentorDetail.Append("</fieldset>");
 
 						mentorDetail.Append(_getButtonHtml(connectionStatusId, profileCommon.FullName));
@@ -111,14 +111,8 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 
 	private string _getButtonHtml(int connectionStatusId, string mentorName)
 	{
-		if (connectionStatusId == ConnectionStatus.None.GetHashCode())
-		{
-			return string.Format("<a class=\"btn accept connect\">Connect with {0}</a>", mentorName);
-		}
-		else
-		{
-			return string.Empty;
-		}
+		string style = connectionStatusId == ConnectionStatus.None.GetHashCode() ? string.Empty : " style=\"display:none;\"";
+		return string.Format("<a id=\"cnx-request-button\" class=\"btn accept connect\" {0}>Connect with {1}</a>", style, mentorName);
 	}
 
 	private string _getStatusMessage(int connectionStatusId)
