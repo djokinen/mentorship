@@ -119,7 +119,7 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 	{
 		if (connectionStatusId == ConnectionStatus.Rejected.GetHashCode())
 		{
-			return "You can not connect to this mentor";
+			return "You can not connect with this mentor";
 		}
 		else if (connectionStatusId == ConnectionStatus.Pending.GetHashCode())
 		{
@@ -127,7 +127,7 @@ public partial class UserControl_MenteeMentor_List : BaseUserControl
 		}
 		else if (connectionStatusId == ConnectionStatus.Accepted.GetHashCode())
 		{
-			return "You are connected to this mentor";
+			return "You are connected with this mentor";
 		}
 		else
 		{

@@ -53,11 +53,11 @@
 				break;
 			case 2: // accepted
 				$("#mentor-detail #cnx-request-button").hide();
-				$("#mentor-detail .status").html("You are connected to this mentor");
+				$("#mentor-detail .status").html("You are connected with this mentor");
 				break;
 			case -1: // rejected
 				$("#mentor-detail #cnx-request-button").hide();
-				$("#mentor-detail .status").html("You can not connect to this mentor");
+				$("#mentor-detail .status").html("You can not connect with this mentor");
 				break;
 			default: // none
 				$("#mentor-detail #cnx-request-button").show();

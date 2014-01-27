@@ -65,14 +65,18 @@ public partial class UserControl_Membership_Create : BaseUserControl
 		MembershipUser membershipUser = Membership.CreateUser(UserName.Text, Password.Text, UserName.Text, null, null, true, out membershipCreateStatus);
 		if (membershipUser != null)
 		{
+			RoleType roleType = this.IsMentee ? RoleType.Mentee : RoleType.Mentor;
+			Roles.AddUserToRole(membershipUser.UserName, roleType.ToString());
 			// add user to role
-			if (this._isMentee) { Roles.AddUserToRole(membershipUser.UserName, RoleType.Mentee.ToString()); }
-			else { Roles.AddUserToRole(membershipUser.UserName, RoleType.Mentor.ToString()); }
+			//if (this._isMentee) { Roles.AddUserToRole(membershipUser.UserName, RoleType.Mentee.ToString()); }
+			//else { Roles.AddUserToRole(membershipUser.UserName, RoleType.Mentor.ToString()); }
 
 			// add user profile information
 			ProfileCommon profileCommon = (ProfileCommon)ProfileCommon.Create(membershipUser.UserName);
 			profileCommon.FullName = FullName.Text.Trim();
 			profileCommon.Save();
+
+			Global.SendRegistrationEmail(membershipUser, roleType);
 		}
 		status = membershipCreateStatus.ToString();
 		return status == "Success";
