@@ -3,55 +3,47 @@
 <script>
 	var btn;
 	$(function () {
-		$("#mentee-mentor-list a.accept").click(function () {
-			if (confirm("Connect with this mentee?")) {
-				btn = $(this);
-				var uid = btn.closest("li").data("userid");
-				WebService.ConnectWithMentee(uid, 2, _connectWithMenteeCallback);
-			}
-		});
-
-		$("#mentee-mentor-list a.reject").click(function () {
-			if (confirm("End connection with this mentee?")) {
-				btn = $(this);
-				var uid = btn.closest("li").data("userid");
-				WebService.ConnectWithMentee(uid, -1, _connectWithMenteeCallback);
-			}
+		$("#mentee-mentor-list a").click(function () {
+			_connectWithMentee($(this));
 		});
 	});
 
+	function _connectWithMentee(button) {
+		btn = button;
+		var uid = btn.closest("li").data("userid");
+		if (btn.hasClass("accept")) {
+			if (confirm("Connect with this mentee?")) {
+				WebService.ConnectWithMentee(uid, 2, _connectWithMenteeCallback);
+			}
+		}
+		else {
+			if (confirm("Remove this mentee from your connection list?")) {
+				WebService.ConnectWithMentee(uid, 0, _connectWithMenteeCallback);
+			}
+		}
+	}
+
 	/*	int retval = connection status id
-	*	None = 0, Rejected = -1, Pending = 1, Accepted = 2	*/
+	*	None = 0, Pending = 1, Accepted = 2	*/
 	function _connectWithMenteeCallback(retval) {
 		btn.toggleClass("accept reject");
 		if (btn.hasClass('accept')) {
-			btn.text('connect');
+			// btn.text('connect');
+			// TODO: remove this row
+			var li = btn.closest("li");
+			btn.closest("li").remove();
+			// check if there's any items left
+			if ($("ul#mentee-mentor-list li").length == 0) {
+				$("<strong>You have no pending connections</strong>").appendTo("ul#mentee-mentor-list");
+			}
 		} else {
 			btn.text('disconnect');
 		}
 	}
-	//	return;
-	//	switch (retval) {
-	//		case -1: // rejected
-	//			alert('connection rejected:');
-	//			break;
-	//		case 0:
-	//			alert('connection none:');
-	//			break;
-	//		case 1:
-	//			alert('connection pending:');
-	//			break;
-	//		default:
-	//			alert('connection accepted:');
-	//	}
-	//	alert("return value: " + retval + "\nuse return value to set li and div data attr");
-	//}
 
 </script>
 
-<%--<section class="form">--%>
-	<h2>Mentee Connections</h2>
-	<ul id="mentee-mentor-list">
-		<asp:Literal ID="literal" runat="server"></asp:Literal>
-	</ul>
-<%--</section>--%>
+<h2>Mentee Connections</h2>
+<ul id="mentee-mentor-list">
+	<asp:Literal ID="literal" runat="server"></asp:Literal>
+</ul>

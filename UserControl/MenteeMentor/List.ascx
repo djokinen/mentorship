@@ -45,7 +45,7 @@
 	});
 
 	function _setConnectionStatusInDetailForm(connectionStatusId) {
-		/* None = 0, Rejected = -1, Pending = 1, Accepted = 2 */
+		/* None = 0, Pending = 1, Accepted = 2 */
 		switch (connectionStatusId) {
 			case 1: // pending
 				$("#mentor-detail #cnx-request-button").hide();
@@ -55,10 +55,6 @@
 				$("#mentor-detail #cnx-request-button").hide();
 				$("#mentor-detail .status").html("You are connected with this mentor");
 				break;
-			case -1: // rejected
-				$("#mentor-detail #cnx-request-button").hide();
-				$("#mentor-detail .status").html("You can not connect with this mentor");
-				break;
 			default: // none
 				$("#mentor-detail #cnx-request-button").show();
 				$("#mentor-detail .status").html("Connection available");
@@ -67,10 +63,8 @@
 
 	function _connectWithMentorCallback(retval) {
 		// int retval = connection status id
-		// None = 0, Rejected = -1, Pending = 1, Accepted = 2
+		// None = 0, Pending = 1, Accepted = 2
 		switch (retval) {
-			case -1:
-				break;
 			case 0:
 				break;
 			case 1:
