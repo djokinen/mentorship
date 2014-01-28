@@ -75,7 +75,7 @@
 
 				<li>
 					<div class="commands">
-						<asp:LinkButton CssClass="btn" ID="buttonUpdateMentee" runat="server" CommandArgument="update" Text="Update Profile" ValidationGroup="required-info" />
+						<asp:LinkButton CssClass="btn accept" ID="buttonUpdateMentee" runat="server" CommandArgument="update" Text="Update Profile" ValidationGroup="required-info" />
 						<asp:Label ID="labelStatusMentee" runat="server" EnableViewState="false" CssClass="status"></asp:Label>
 					</div>
 				</li>
@@ -119,7 +119,7 @@
 
 				<li>
 					<div class="commands">
-						<asp:LinkButton CssClass="btn" ID="buttonUpdateMentor" runat="server" CommandArgument="update" Text="Update Profile" ValidationGroup="required-info"></asp:LinkButton>
+						<asp:LinkButton CssClass="btn accept" ID="buttonUpdateMentor" runat="server" CommandArgument="update" Text="Update Profile" ValidationGroup="required-info"></asp:LinkButton>
 						<asp:Label ID="labelStatusMentor" runat="server" EnableViewState="false" CssClass="status"></asp:Label>
 					</div>
 				</li>

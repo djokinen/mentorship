@@ -39,7 +39,7 @@
 				</tr>
 				<tr>
 					<td align="right" colspan="2">
-						<asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="logincontrol" />
+						<asp:LinkButton CssClass="btn accept" ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="logincontrol" />
 					</td>
 				</tr>
 				<tr>

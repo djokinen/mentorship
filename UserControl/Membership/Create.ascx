@@ -52,7 +52,7 @@
 
 				<li>
 					<div class="commands">
-						<asp:Button ID="buttonCreateUser" CommandArgument="create" runat="server" Text="Create" ValidationGroup="required-info" />
+						<asp:LinkButton ID="buttonCreateUser" CssClass="btn accept" CommandArgument="create" runat="server" Text="Create" ValidationGroup="required-info"></asp:LinkButton>
 					</div>
 				</li>
 			</ol>
@@ -87,7 +87,7 @@
 				</li>
 				<li>
 					<div class="commands">
-						<asp:Button ID="buttonUpdateProfile_mentee" runat="server" CommandArgument="update" Text="Update" />
+						<asp:LinkButton CssClass="btn accept" ID="buttonUpdateProfile_mentee" runat="server" CommandArgument="update" Text="Update" />
 					</div>
 				</li>
 			</ol>
@@ -122,7 +122,7 @@
 
 				<li>
 					<div class="commands">
-						<asp:Button ID="buttonUpdateProfile_mentor" runat="server" CommandArgument="update" Text="Update" />
+						<asp:LinkButton CssClass="btn accept" ID="buttonUpdateProfile_mentor" runat="server" CommandArgument="update" Text="Update" />
 					</div>
 				</li>
 			</ol>
@@ -137,7 +137,7 @@
 			<p>Your account has been set-up. You can begin by logging in and editing your profile</p>
 			<ul>
 				<li>
-					<a class="btn" href="/membership/profile.aspx">go to my profile</a>
+					<a class="btn accept" href="/membership/profile.aspx">View your profile</a>
 				</li>
 			</ul>
 

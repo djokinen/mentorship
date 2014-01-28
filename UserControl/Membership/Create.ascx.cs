@@ -18,9 +18,9 @@ public partial class UserControl_Membership_Create : BaseUserControl
 		buttonUpdateProfile_mentor.Click += buttonUpdateProfile_Click;
 	}
 
-	void buttonCreateUser_Click(object sender, EventArgs e) { _showStep(((Button)sender).CommandArgument); }
+	void buttonCreateUser_Click(object sender, EventArgs e) { _showStep(((LinkButton)sender).CommandArgument); }
 
-	void buttonUpdateProfile_Click(object sender, EventArgs e) { _showStep(((Button)sender).CommandArgument); }
+	void buttonUpdateProfile_Click(object sender, EventArgs e) { _showStep(((LinkButton)sender).CommandArgument); }
 
 	private void _showStep(string commandArgument)
 	{
@@ -65,7 +65,7 @@ public partial class UserControl_Membership_Create : BaseUserControl
 		MembershipUser membershipUser = Membership.CreateUser(UserName.Text, Password.Text, UserName.Text, null, null, true, out membershipCreateStatus);
 		if (membershipUser != null)
 		{
-			RoleType roleType = this.IsMentee ? RoleType.Mentee : RoleType.Mentor;
+			RoleType roleType = this._isMentee ? RoleType.Mentee : RoleType.Mentor;
 			Roles.AddUserToRole(membershipUser.UserName, roleType.ToString());
 			// add user to role
 			//if (this._isMentee) { Roles.AddUserToRole(membershipUser.UserName, RoleType.Mentee.ToString()); }
